@@ -1,0 +1,63 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: white;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    font-size: 2.5em;
+    font-weight: 700;
+    margin: 20px 0;
+}
+
+#uptime-container {
+    margin-top: 50px;
+    width: 60%; /* Updated width */
+    margin: 0 auto; /* Center the container */
+}
+
+.uptime-text {
+    font-size: 1.5em;
+    font-weight: 500;
+    color: #3b8d99;
+    margin: 20px 0;
+}
+
+.progress-bar {
+    width: 80%;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.progress {
+    height: 50px;
+    background: linear-gradient(90deg, #76c7c0, #3b8d99);
+    width: 100px;
+    border-radius: 10px 0 0 10px;
+    transition: width 0.5s ease-in-out;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.top-half {
+    height: 80%;
+    background: linear-gradient(to bottom, #7cacd0, #ffffff); /* Replace #color1 and #color2 with your actual colors */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.bottom-half {
+    height: 20%;
+    background-color: #564444c1; /* Dark color */
+}

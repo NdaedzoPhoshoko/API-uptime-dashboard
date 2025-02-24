@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+</head>
+<body>
+    <div class="top-half">
+        <h1>Company Api Status</h1>
+        <div id="uptime-container">
+            <p class="uptime-text">API Uptime: <span id="uptime-minutes"></span> minutes</p>
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-half">
+        <p id="success-message" class="success-text" style="display: none;">API working fine since the last 20-minute cycle</p>
+        <p id="error-message" class="error-text" style="display: none;">API is down!</p>
+    </div>
+    <script>
+        function updateUptime() {
+            fetch('/api/uptime')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const minutesOnline = data.minutes_online;
+                    const progressPercentage = (minutesOnline % 20) * 5; // Calculate progress percentage for 20-minute cycle
+                    document.getElementById('uptime-minutes').textContent = minutesOnline;
+                    
+                    // Update progress bar width
+                    const progress = document.getElementById('progress');
+                    progress.style.width = progressPercentage + '%';
+
+                    // Show success message and hide error message if API is up
+                    document.getElementById('success-message').style.display = 'block';
+                    document.getElementById('error-message').style.display = 'none';
+                })
+                .catch(error => {
+                    console.error('Error fetching uptime data:', error);
+                    // Show error message and hide success message if API is down
+                    document.getElementById('error-message').style.display = 'block';
+                    document.getElementById('success-message').style.display = 'none';
+                });
+        }
+
+        // Update uptime every minute
+        setInterval(updateUptime, 60000);
+        // Initial fetch
+        document.addEventListener('DOMContentLoaded', updateUptime);
+    </script>
+</body>
+</html>
