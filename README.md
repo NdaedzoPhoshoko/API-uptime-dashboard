@@ -43,6 +43,7 @@ This project is a simple dashboard to monitor the uptime of an API. It displays 
     ```
 
 2. Open your web browser and go to `http://127.0.0.1:5000` to view the dashboard.
+Also go to `http://127.0.0.1:5000/api/uptime` to view the raw json data. The data shows current uptime cycle with its 20 minutes progress.
 
 ## Project Structure
 
@@ -59,5 +60,5 @@ This project is a simple dashboard to monitor the uptime of an API. It displays 
 ```json
 {
     "minutes_online": 123,
-    "progress": 15%
+    "progress": "15%"
 }
